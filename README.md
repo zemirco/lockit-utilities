@@ -29,6 +29,13 @@ exports.loginRoute = '/login';
 
  - protect routes from unauthorized access
 
+## Methods
+
+##### `restrict(config)`
+
+ - `config` is optional and should include `loginRoute`
+ - `loginRoute` defaults to '/login'
+
 ## Test
 
 `grunt`
