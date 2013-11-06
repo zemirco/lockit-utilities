@@ -1,0 +1,29 @@
+{
+  "name": "lockit-utils",
+  "version": "0.0.1",
+  "description": "utilities for lockit",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "keywords": [
+    "lockit",
+    "utilities"
+  ],
+  "author": {
+    "name": "Mirco Zeiss",
+    "email": "mirco.zeiss@gmail.com",
+    "twitter": "zeMirco"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zeMirco/lockit-utilities"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.7.1",
+    "should": "~2.0.2",
+    "grunt-mocha-test": "~0.7.0"
+  }
+}
