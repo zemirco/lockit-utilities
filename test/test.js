@@ -41,12 +41,13 @@ describe('lockit-utils', function() {
       session: {
         username: null,
         email: null
-      }
+      },
+      url: '/profile'
     };
     var fn = utls.restrict();
     var res = {
       redirect: function(route) {
-        route.should.equal('/login');
+        route.should.equal('/login?redirect=/profile');
         done();
       }
     };
@@ -58,7 +59,8 @@ describe('lockit-utils', function() {
       session: {
         username: null,
         email: null
-      }
+      },
+      url: '/profile'
     };
     var config = {
       loginRoute: '/test'
@@ -66,7 +68,7 @@ describe('lockit-utils', function() {
     var fn = utls.restrict(config);
     var res = {
       redirect: function(route) {
-        route.should.equal('/test');
+        route.should.equal('/test?redirect=/profile');
         done();
       }
     };

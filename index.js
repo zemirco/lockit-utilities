@@ -19,12 +19,7 @@ exports.restrict = function(config) {
     } else {
       debug('no session found -> redirecting to %s', route);
       // redirect to login page but save url the user really wanted to visit
-      // lockit-login will make use of this
-      req.session.redirectUrlAfterLogin = req.url;
-      // tell login route that user was redirected
-      req.session.restrictCalled = true;
-      // redirect user
-      res.redirect(route);
+      res.redirect(route + '?redirect=' + req.url);
     }
   };
   
