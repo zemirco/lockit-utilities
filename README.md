@@ -22,19 +22,19 @@ exports.loginRoute = '/login';
 
 // database connection string
 // CouchDB
-exports.dbUrl = 'http://127.0.0.1:5984/test';
+exports.db = 'http://127.0.0.1:5984/test';
 
 // MongoDB
-// exports.dbUrl = 'mongodb://127.0.0.1/test';
+// exports.db = 'mongodb://127.0.0.1/test';
 
 // PostgreSQL
-// exports.dbUrl = 'postgres://127.0.0.1:5432/users';
+// exports.db = 'postgres://127.0.0.1:5432/users';
 
 // MySQL
-// exports.dbUrl = 'mysql://127.0.0.1:9821/users';
+// exports.db = 'mysql://127.0.0.1:9821/users';
 
 // SQLite
-// exports.dbUrl = 'sqlite://:memory:';
+// exports.db = 'sqlite://:memory:';
 ```
 
 ## Features
