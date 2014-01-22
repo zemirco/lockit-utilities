@@ -12,29 +12,61 @@ Small utilities module for [lockit](https://github.com/zeMirco/lockit).
 
 ```js
 var utls = require('lockit-utils');
-
-app.get('/secret', utls.restrict(), function(req, res) {
-  res.send('You need to be logged in to see this');
-});
 ```
 
 ## Configuration
 
 ```js
-// redirect when requesting protected page
+// redirect target when requesting restricted page
 exports.loginRoute = '/login';
+
+// database connection string
+// CouchDB
+exports.dbUrl = 'http://127.0.0.1:5984/test';
+
+// MongoDB
+// exports.dbUrl = 'mongodb://127.0.0.1/test';
+
+// PostgreSQL
+// exports.dbUrl = 'postgres://127.0.0.1:5432/users';
+
+// MySQL
+// exports.dbUrl = 'mysql://127.0.0.1:9821/users';
+
+// SQLite
+// exports.dbUrl = 'sqlite://:memory:';
 ```
 
 ## Features
 
- - protect routes from unauthorized access
+ - protect routes from unauthorized access and redirect
+ - get database and lockit adapter from connection string
 
 ## Methods
 
-##### `restrict(config)`
+##### `utls.restrict(config)`
+ 
+```js
+var config = require('./config.js');
 
- - `config` is optional and should include `loginRoute`
- - `loginRoute` defaults to '/login'
+app.get('/private', utls.restrict(config), function(req, res) {
+  res.send('only a registered user can see this');
+})
+```
+
+#### `utls.getDatabase(config)`
+
+```js
+var config = require('./config.js');
+
+var db = utls.getDatabase(config);
+
+// db is an object containing the keys 'type' and 'adapter'
+// {
+//   type: 'couchdb',
+//   adapter: 'lockit-couchdb-adapter'
+// }
+```
 
 ## Test
 
