@@ -19,6 +19,10 @@ exports.restrict = function(config) {
       next();
     } else {
       debug('no session found -> redirecting to %s', route);
+      
+      // send only status code when rest and json is active
+      if (config.rest) return res.send(401);
+      
       // redirect to login page but save url the user really wanted to visit
       res.redirect(route + '?redirect=' + req.url);
     }

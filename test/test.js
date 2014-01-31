@@ -76,6 +76,26 @@ describe('lockit-utils', function() {
       };
       fn(req, res, function() {});
     });
+
+    it('should send 401 if rest is active', function(done) {
+      var req = {
+        session: {
+          username: null,
+          email: null
+        }
+      };
+      var config = {
+        rest: true
+      };
+      var fn = utls.restrict(config);
+      var res = {
+        send: function(status) {
+          status.should.equal(401);
+          done();
+        }
+      };
+      fn(req, res, function() {});
+    });
     
   });
   
