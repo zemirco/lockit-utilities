@@ -3,13 +3,13 @@ var should = require('should');
 var utls = require('../index.js');
 
 describe('lockit-utils', function() {
-  
+
   describe('restrict', function() {
 
     it('should protect routes from unauthorized access', function(done) {
       var req = {
         session: {
-          username: null,
+          name: null,
           email: null
         }
       };
@@ -26,7 +26,7 @@ describe('lockit-utils', function() {
     it('should allow access to authorized users', function(done) {
       var req = {
         session: {
-          username: 'john',
+          name: 'john',
           email: 'john@email.com'
         }
       };
@@ -41,7 +41,7 @@ describe('lockit-utils', function() {
     it('should use the default route when none is specified', function(done) {
       var req = {
         session: {
-          username: null,
+          name: null,
           email: null
         },
         url: '/profile'
@@ -59,7 +59,7 @@ describe('lockit-utils', function() {
     it('should use the custom route if one is specified', function(done) {
       var req = {
         session: {
-          username: null,
+          name: null,
           email: null
         },
         url: '/profile'
@@ -80,7 +80,7 @@ describe('lockit-utils', function() {
     it('should send 401 if rest is active', function(done) {
       var req = {
         session: {
-          username: null,
+          name: null,
           email: null
         }
       };
@@ -96,11 +96,11 @@ describe('lockit-utils', function() {
       };
       fn(req, res, function() {});
     });
-    
+
   });
-  
+
   describe('getDatabaseType', function() {
-    
+
     it('should work for CouchDB', function(done) {
       var config = {
         db: 'http://127.0.0.1:5984/test'
@@ -150,7 +150,7 @@ describe('lockit-utils', function() {
       db.adapter.should.equal('lockit-sql-adapter');
       done();
     });
-    
+
   });
-  
+
 });

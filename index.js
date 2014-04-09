@@ -1,6 +1,6 @@
 
 var url = require('url');
-// lockit-login attaches username and email to req.session
+// lockit-login attaches name and email to req.session
 
 // restrict routes to users who are logged in
 exports.restrict = function(config) {
@@ -13,7 +13,7 @@ exports.restrict = function(config) {
 
   // simple restrict function from express auth example
   return function(req, res, next) {
-    if (req.session.username && req.session.email) {
+    if (req.session.name && req.session.email) {
       next();
     } else {
       // send only status code when rest and json is active
