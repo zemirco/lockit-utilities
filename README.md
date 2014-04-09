@@ -1,6 +1,6 @@
 # Lockit utilities
 
-[![Build Status](https://travis-ci.org/zeMirco/lockit-utilities.png?branch=master)](https://travis-ci.org/zeMirco/lockit-utilities) [![NPM version](https://badge.fury.io/js/lockit-utils.png)](http://badge.fury.io/js/lockit-utils)
+[![Build Status](https://travis-ci.org/zeMirco/lockit-utilities.svg?branch=master)](https://travis-ci.org/zeMirco/lockit-utilities) [![NPM version](https://badge.fury.io/js/lockit-utils.svg)](http://badge.fury.io/js/lockit-utils)
 
 Small utilities module for [lockit](https://github.com/zeMirco/lockit).
 
@@ -43,7 +43,7 @@ exports.db = 'http://127.0.0.1:5984/test';
 ## Methods
 
 ##### `utls.restrict(config)`
- 
+
 ```js
 var config = require('./config.js');
 
