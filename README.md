@@ -31,14 +31,14 @@ exports.db = 'http://127.0.0.1:5984/';
 
 // PostgreSQL
 // exports.db = {
-//   url: 'postgres://postgres:@127.0.0.1:5432/',
+//   url: 'postgres://127.0.0.1:5432/',
 //   name: 'users',
 //   collection: 'my_user_table'
 // };
 
 // MySQL
 // exports.db = {
-//   url: 'mysql://travis:@127.0.0.1:3306/',
+//   url: 'mysql://127.0.0.1:3306/',
 //   name: 'users',
 //   collection: 'my_user_table'
 // };
