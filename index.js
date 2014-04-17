@@ -30,7 +30,9 @@ exports.restrict = function(config) {
 // return an object with the type of database and the required adapter
 exports.getDatabase = function(config) {
 
-  var urlObj = url.parse(config.db);
+  var uri = config.db.url || config.db;
+
+  var urlObj = url.parse(uri);
   var prot = urlObj.protocol;
 
   var res = {};
