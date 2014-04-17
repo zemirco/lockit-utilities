@@ -108,12 +108,22 @@ describe('lockit-utils', function() {
       var db = utls.getDatabase(config);
       db.type.should.equal('couchdb');
       db.adapter.should.equal('lockit-couchdb-adapter');
+      var config_alt = {
+        db: {
+          url: 'http://127.0.0.1:5984/test'
+        }
+      };
+      var db_alt = utls.getDatabase(config_alt);
+      db_alt.type.should.equal('couchdb');
+      db_alt.adapter.should.equal('lockit-couchdb-adapter');
       done();
     });
 
     it('should work for MongoDB', function(done) {
       var config = {
-        db: 'mongodb://127.0.0.1/test'
+        db: {
+          url: 'mongodb://127.0.0.1/test'
+        }
       };
       var db = utls.getDatabase(config);
       db.type.should.equal('mongodb');
@@ -123,7 +133,9 @@ describe('lockit-utils', function() {
 
     it('should work for PostgreSQL', function(done) {
       var config = {
-        db: 'postgres://127.0.0.1:5432/users'
+        db: {
+          url: 'postgres://127.0.0.1:5432/users'
+        }
       };
       var db = utls.getDatabase(config);
       db.type.should.equal('postgresql');
@@ -133,7 +145,9 @@ describe('lockit-utils', function() {
 
     it('should work for MySQL', function(done) {
       var config = {
-        db: 'mysql://127.0.0.1:9821/users'
+        db: {
+          url: 'mysql://127.0.0.1:9821/users'
+        }
       };
       var db = utls.getDatabase(config);
       db.type.should.equal('mysql');
@@ -143,7 +157,9 @@ describe('lockit-utils', function() {
 
     it('should work for SQLite', function(done) {
       var config = {
-        db: 'sqlite://:memory:'
+        db: {
+          url: 'sqlite://'
+        }
       };
       var db = utls.getDatabase(config);
       db.type.should.equal('sqlite');
