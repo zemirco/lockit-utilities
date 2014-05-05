@@ -6,7 +6,9 @@ html
     link(rel="stylesheet", href="css/prism.css")
     link(rel="stylesheet", href="css/styles.css")
   body
-    h1= title
+    h1 #{title}
+      a(href=repo, target="_blank", class="repo-link")
+        i.fa.fa-github
     {{#each}}
     section
       include:md ../{{this}}

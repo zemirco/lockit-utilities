@@ -36,6 +36,11 @@ h3:hover .link {
 }
 
 /* fix font awesome font size */
-.fa {
+.fa-link {
   font-size: 16px;
+}
+
+.repo-link {
+  color: #000;
+  margin-left: 15px;
 }
