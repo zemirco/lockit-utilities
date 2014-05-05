@@ -1,0 +1,41 @@
+
+body {
+  width: 800px;
+  margin: 0 auto;
+}
+
+section {
+  /* important for absolute positioned links inside */
+  position: relative;
+  margin-bottom: 120px;
+}
+
+/* custom code block styles */
+pre[class*="language-"] {
+  background: none;
+  border: 1px solid #e7e7e7;
+}
+
+/* heading hover link */
+.link {
+  position: absolute;
+  top: 0;
+  left: -20px;
+  opacity: 0;
+  width: 30px;
+  color: #000;
+}
+
+/* show link symbol on heading and link hover */
+h3:hover .link {
+  opacity: 1;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
+/* fix font awesome font size */
+.fa {
+  font-size: 16px;
+}
