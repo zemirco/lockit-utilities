@@ -1,0 +1,140 @@
+<!DOCTYPE html><html><head><title>lockit-utils</title><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"><link rel="stylesheet" href="css/prism.css"><link rel="stylesheet" href="css/styles.css"></head><body><h1>lockit-utils</h1><section><h3 id="destroy-req-done-">destroy (req, done)</h3>
+<p>Destroy the current session. Works with cookie sessions and session stores.</p>
+<ul>
+<li><p><code>req</code> <strong>Object</strong> - The default Express request object</p>
+</li>
+<li><p><code>done</code> <strong>function</strong> - Function executed when session is destroyed</p>
+</li>
+</ul>
+<h4 id="example">Example</h4>
+<pre><code class="lang-javascript">util.destroy(req, function() {
+  // user is now logged out
+});
+</code></pre>
+</section><section><h3 id="getdatabase-config-">getDatabase (config)</h3>
+<p>Get type of database and database adapter name from connection string / object.</p>
+<ul>
+<li><p><code>config</code> <strong>Object</strong> - Configuration object</p>
+<ul>
+<li><code>db</code> <strong>String, Object</strong> - Database connection string / object</li>
+</ul>
+</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<ul>
+<li><strong>Object</strong> - Object containing database <code>type</code> and <code>adapter</code></li>
+</ul>
+<h4 id="example">Example</h4>
+<p><code>config.js (CouchDB)</code></p>
+<pre><code class="lang-javascript">exports.db = &#39;http://127.0.0.1:5984/&#39;;
+</code></pre>
+<p><code>config.js (all other DBs)</code></p>
+<pre><code class="lang-javascript">exports.db = {
+  url: &#39;postgres://127.0.0.1:5432/&#39;,
+  name: &#39;users&#39;,
+  collection: &#39;my_user_table&#39;
+}
+</code></pre>
+<p><code>app.js</code></p>
+<pre><code class="lang-javascript">var config = require(&#39;./config.js&#39;);
+var db = util.getDatabase(config);
+// {
+//   type: &#39;couchdb&#39;,
+//   adapter: &#39;lockit-couchdb-adapter&#39;
+// }
+</code></pre>
+</section><section><h3 id="qr-config-">qr (config)</h3>
+<p>Generate image link to QR code.</p>
+<ul>
+<li><p><code>config</code> <strong>Object</strong> - Configuration object</p>
+<ul>
+<li><p><code>key</code> <strong>String</strong> - Individual random key for user</p>
+</li>
+<li><p><code>email</code> <strong>String</strong> - User email for Google Authenticator app</p>
+</li>
+<li><p><code>issuer</code> <strong>String</strong> - Issuer for Google Authenticator - default <code>&#39;Lockit&#39;</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<ul>
+<li><strong>String</strong> - URL for QR code</li>
+</ul>
+<h4 id="example">Example</h4>
+<pre><code class="lang-javascript">var config = {
+  key: &#39;abcd1234&#39;,
+  email: &#39;mirco.zeiss@gmail.com&#39;
+};
+var link = util.qr(config);
+// https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl=otpauth%3A%2F%2Ftotp%2FLockit%3Amirco.zeiss%40gmail.com%3Fsecret%3DMFRGGZBRGI2DI%3D%3D%3D%26issuer%3DLockit
+</code></pre>
+</section><section><h3 id="restrict-config-">restrict ([config])</h3>
+<p>Prevent users who aren&#39;t logged-in from accessing routes.
+Use <code>loginRoute</code> for redirection. Function also remembers the requested url
+and user is redirected after successful login.</p>
+<ul>
+<li><p><code>config</code> <strong>Object</strong> <em>optional</em>  - Configuration object</p>
+<ul>
+<li><code>loginRoute</code> <strong>String</strong> - Route that handles the login process - default <code>&#39;/login&#39;</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="example">Example</h4>
+<p><code>config.js</code></p>
+<pre><code class="lang-javascript">exports.loginRoute = &#39;/login&#39;;
+</code></pre>
+<p><code>app.js</code></p>
+<pre><code class="lang-javascript">var config = require(&#39;./config.js&#39;);
+app.get(&#39;/private&#39;, util.restrict(config), function(req, res) {
+  res.send(&#39;only a logged in user can see this&#39;);
+})
+</code></pre>
+</section><section><h3 id="verify-token-key-options-">verify (token, key, [options])</h3>
+<p>Verify a two-factor authentication token.</p>
+<ul>
+<li><p><code>token</code> <strong>String</strong> - The two-factor token to verify</p>
+</li>
+<li><p><code>key</code> <strong>String</strong> - The individual key for the user</p>
+</li>
+<li><p><code>options</code> <strong>Object</strong> <em>optional</em>  - Options object for
+<a href="https://github.com/guyht/notp#totpverifytoken-key-opt">notp#totp.verify</a></p>
+<ul>
+<li><p><code>window</code> <strong>String</strong> - Allowable margin for counter - default <code>6</code></p>
+</li>
+<li><p><code>time</code> <strong>Number</strong> - Time step of counter in seconds - default <code>30</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="returns">Returns</h4>
+<ul>
+<li><strong>Boolean</strong> - <code>true</code> if token is valid</li>
+</ul>
+<h4 id="example">Example</h4>
+<pre><code class="lang-javascript">var key = &#39;abcd1234&#39;;
+var token = &#39;236709&#39;;
+var valid = util.verify(token, key);
+if (valid) {
+  // continue here
+}
+</code></pre>
+</section><script src="js/prism.js"></script><script>// add 'language-javascript' to <code> blocks (some already have it)
+var codeBlocks = document.getElementsByTagName('code');
+for (var i = 0; i < codeBlocks.length; i++) {
+  var block = codeBlocks[i];
+  block.classList.add('language-javascript');
+}
+// add hover link to all sections
+var headings = document.getElementsByTagName('h3');
+for (var i = 0; i < headings.length; i++) {
+  var heading = headings[i];
+  var id = heading.getAttribute('id');
+  var link = document.createElement('a');
+  link.href = '#' + id;
+  link.classList.add('link');
+  link.innerHTML = '<i class="fa fa-link"></i>';
+  heading.appendChild(link);
+}
+// highlight
+Prism.highlightAll();</script></body></html>
