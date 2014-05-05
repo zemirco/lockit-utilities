@@ -2,6 +2,18 @@
 body {
   width: 800px;
   margin: 0 auto;
+  font: 400 14px/1.6 "Open Sans", sans-serif;
+  color: #666;
+}
+
+h1, h2, h3, h4 {
+  color: #353535;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #259dff;
+  text-decoration: none;
 }
 
 section {
