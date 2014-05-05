@@ -36,7 +36,8 @@ module.exports = function(grunt) {
       docs: {
         options: {
           data: {
-            title: '<%= pkg.name %>'
+            title: '<%= pkg.name %>',
+            repo: '<%= pkg.repository.url %>'
           }
         },
         files: {
