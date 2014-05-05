@@ -3,7 +3,7 @@
 
 Prevent users who aren't logged-in from accessing routes.
 Use `loginRoute` for redirection. Function also remembers the requested url
-so user is redirected after successful login.
+and user is redirected after successful login.
 
 
 - `config` **Object** *optional*  - Configuration object

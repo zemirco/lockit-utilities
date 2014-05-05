@@ -4,7 +4,7 @@
             "name": "restrict",
             "access": "",
             "virtual": false,
-            "description": "<p>Prevent users who aren't logged-in from accessing routes.\nUse <code>loginRoute</code> for redirection. Function also remembers the requested url\nso user is redirected after successful login.</p>",
+            "description": "<p>Prevent users who aren't logged-in from accessing routes.\nUse <code>loginRoute</code> for redirection. Function also remembers the requested url\nand user is redirected after successful login.</p>",
             "parameters": [
                 {
                     "name": "config",
