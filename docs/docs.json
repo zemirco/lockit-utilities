@@ -4,7 +4,7 @@
             "name": "restrict",
             "access": "",
             "virtual": false,
-            "description": "<p>Prevent users who aren't logged-in from accessing routes.\nUse <code>loginRoute</code> for redirection. Function also remembers the requested url\nand user is redirected after successful login.</p>",
+            "description": "<p>Prevent users who aren't logged-in from accessing routes.\nUse <code>loginRoute</code> for redirection. Function also remembers the requested url\nand user is redirected after successful login. If <code>rest</code> is enabled\nyou'll get a <code>401</code> response.</p>",
             "parameters": [
                 {
                     "name": "config",
@@ -26,13 +26,14 @@
             "examples": [
                 "<caption>config.js</caption>\r\n  exports.loginRoute = '/login';",
                 "<caption>app.js</caption>\r\n  var config = require('./config.js');\r\n  app.get('/private', util.restrict(config), function(req, res) {\r\n    res.send('only a logged in user can see this');\r\n  })"
-            ]
+            ],
+            "lineno": 24
         },
         {
             "name": "getDatabase",
             "access": "",
             "virtual": false,
-            "description": "<p>Get type of database and database adapter name from connection string / object.</p>",
+            "description": "<p>Get type of database and database adapter name from connection information.</p>",
             "parameters": [
                 {
                     "name": "config",
@@ -59,6 +60,7 @@
                 "<caption>config.js (all other DBs)</caption>\r\n  exports.db = {\r\n    url: 'postgres://127.0.0.1:5432/',\r\n    name: 'users',\r\n    collection: 'my_user_table'\r\n  }",
                 "<caption>app.js</caption>\r\n  var config = require('./config.js');\r\n  var db = util.getDatabase(config);\r\n  // {\r\n  //   type: 'couchdb',\r\n  //   adapter: 'lockit-couchdb-adapter'\r\n  // }"
             ],
+            "lineno": 63,
             "returns": {
                 "type": "Object",
                 "description": "<p>Object containing database <code>type</code> and <code>adapter</code></p>"
@@ -68,7 +70,7 @@
             "name": "qr",
             "access": "",
             "virtual": false,
-            "description": "<p>Generate image link to QR code.</p>",
+            "description": "<p>Generate link to QR code,  uses <a href=\"https://developers.google.com/chart/infographics/docs/qr_codes\">Google Charts</a>.</p>",
             "parameters": [
                 {
                     "name": "config",
@@ -106,6 +108,7 @@
             "examples": [
                 "var config = {\r\n  key: 'abcd1234',\r\n  email: 'mirco.zeiss@gmail.com'\r\n};\r\nvar link = util.qr(config);\r\n// https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=otpauth%3A%2F%2Ftotp%2FLockit%3Amirco.zeiss%40gmail.com%3Fsecret%3DMFRGGZBRGI2DI%3D%3D%3D%26issuer%3DLockit"
             ],
+            "lineno": 118,
             "returns": {
                 "type": "String",
                 "description": "<p>URL for QR code</p>"
@@ -115,7 +118,7 @@
             "name": "verify",
             "access": "",
             "virtual": false,
-            "description": "<p>Verify a two-factor authentication token.</p>",
+            "description": "<p>Verify a two-factor authentication token, uses <a href=\"http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm\">time-based one-time password algorithm (totp)</a>.\nTo be used with <a href=\"https://support.google.com/accounts/answer/1066447?hl=en\">Google Authenticator</a>.</p>",
             "parameters": [
                 {
                     "name": "token",
@@ -161,6 +164,7 @@
             "examples": [
                 "var key = 'abcd1234';\r\nvar token = '236709';\r\nvar valid = util.verify(token, key);\r\nif (valid) {\r\n  // continue here\r\n}"
             ],
+            "lineno": 153,
             "returns": {
                 "type": "Boolean",
                 "description": "<p><code>true</code> if token is valid</p>"
@@ -191,7 +195,8 @@
             ],
             "examples": [
                 "util.destroy(req, function() {\r\n  // user is now logged out\r\n});"
-            ]
+            ],
+            "lineno": 173
         }
     ]
 }
