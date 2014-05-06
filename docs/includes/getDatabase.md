@@ -1,7 +1,7 @@
 
 ### getDatabase (config)
 
-Get type of database and database adapter name from connection string / object.
+Get type of database and database adapter name from connection information.
 
 
 - `config` **Object** - Configuration object

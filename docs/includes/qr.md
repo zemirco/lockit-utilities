@@ -1,7 +1,7 @@
 
 ### qr (config)
 
-Generate image link to QR code.
+Generate link to QR code,  uses <a href="https://developers.google.com/chart/infographics/docs/qr_codes">Google Charts</a>.
 
 
 - `config` **Object** - Configuration object
