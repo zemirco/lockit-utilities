@@ -62,14 +62,17 @@ exports.db = 'http://127.0.0.1:5984/';
 ## Methods
 
 
-### destroy (req, done)
+### restrict ([config])
 
-Destroy the current session. Works with cookie sessions and session stores.
+Prevent users who aren't logged-in from accessing routes.
+Use `loginRoute` for redirection. Function also remembers the requested url
+and user is redirected after successful login. If `rest` is enabled
+you'll get a `401` response.
 
 
-- `req` **Object** - The default Express request object
+- `config` **Object** *optional*  - Configuration object
 
-- `done` **function** - Function executed when session is destroyed
+  - `loginRoute` **String** - Route that handles the login process - default `'/login'`
 
 
 
@@ -77,10 +80,17 @@ Destroy the current session. Works with cookie sessions and session stores.
 #### Example
 
 
+`config.js`
 ```javascript
-util.destroy(req, function() {
-  // user is now logged out
-});
+exports.loginRoute = '/login';
+```
+
+`app.js`
+```javascript
+var config = require('./config.js');
+app.get('/private', util.restrict(config), function(req, res) {
+  res.send('only a logged in user can see this');
+})
 ```
 
 
@@ -157,38 +167,6 @@ var link = util.qr(config);
 ```
 
 
-### restrict ([config])
-
-Prevent users who aren't logged-in from accessing routes.
-Use `loginRoute` for redirection. Function also remembers the requested url
-and user is redirected after successful login. If `rest` is enabled
-you'll get a `401` response.
-
-
-- `config` **Object** *optional*  - Configuration object
-
-  - `loginRoute` **String** - Route that handles the login process - default `'/login'`
-
-
-
-
-#### Example
-
-
-`config.js`
-```javascript
-exports.loginRoute = '/login';
-```
-
-`app.js`
-```javascript
-var config = require('./config.js');
-app.get('/private', util.restrict(config), function(req, res) {
-  res.send('only a logged in user can see this');
-})
-```
-
-
 ### verify (token, key, [options])
 
 Verify a two-factor authentication token, uses <a href="http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm">time-based one-time password algorithm (totp)</a>.
@@ -221,6 +199,28 @@ var valid = util.verify(token, key);
 if (valid) {
   // continue here
 }
+```
+
+
+### destroy (req, done)
+
+Destroy the current session. Works with cookie sessions and session stores.
+
+
+- `req` **Object** - The default Express request object
+
+- `done` **function** - Function executed when session is destroyed
+
+
+
+
+#### Example
+
+
+```javascript
+util.destroy(req, function() {
+  // user is now logged out
+});
 ```
 
 
