@@ -5,13 +5,26 @@ html
     link(rel="stylesheet", href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
     link(rel="stylesheet", href="css/prism.css")
     link(rel="stylesheet", href="css/styles.css")
-  body
+  body(data-spy="scroll", data-target="nav", data-offset="100")
     h1 #{title}
       a(href=repo, target="_blank", class="repo-link")
         i.fa.fa-github
+    nav
+      ul.nav
+        
+        li: a(href="#restrict-config-", data-lineno="24") restrict
+        
+        li: a(href="#getdatabase-config-", data-lineno="63") getDatabase
+        
+        li: a(href="#qr-config-", data-lineno="118") qr
+        
+        li: a(href="#verify-token-key-options-", data-lineno="153") verify
+        
+        li: a(href="#destroy-req-done-", data-lineno="173") destroy
+        
     
     section
-      include:md ../includes/destroy.md
+      include:md ../includes/restrict.md
     
     section
       include:md ../includes/getDatabase.md
@@ -20,11 +33,13 @@ html
       include:md ../includes/qr.md
     
     section
-      include:md ../includes/restrict.md
-    
-    section
       include:md ../includes/verify.md
     
+    section
+      include:md ../includes/destroy.md
+    
+    script(src="http://code.jquery.com/jquery-2.1.0.min.js")
+    script(src="js/bootstrap.min.js")
     script(src="js/prism.js")
     script.
       // add 'language-javascript' to <code> blocks (some already have it)
@@ -33,16 +48,26 @@ html
         var block = codeBlocks[i];
         block.classList.add('language-javascript');
       }
-      // add hover link to all sections
+      // add hover links to all function headings
       var headings = document.getElementsByTagName('h3');
       for (var i = 0; i < headings.length; i++) {
         var heading = headings[i];
         var id = heading.getAttribute('id');
-        var link = document.createElement('a');
-        link.href = '#' + id;
-        link.classList.add('link');
-        link.innerHTML = '<i class="fa fa-link"></i>';
-        heading.appendChild(link);
+        // create anchor link for deep linking to function
+        var anchorLink = document.createElement('a');
+        anchorLink.href = '#' + id;
+        anchorLink.classList.add('link');
+        anchorLink.innerHTML = '<i class="fa fa-link"></i>';
+        heading.appendChild(anchorLink);
+        // create link to github repo code with line number
+        var navLink = document.querySelector('a[href="#' + id + '"]');
+        var lineno = navLink.getAttribute('data-lineno');
+        var sourceLink = document.createElement('a');
+        sourceLink.href = '#{repo}/blob/master/#{main}#L' + lineno;
+        sourceLink.classList.add('source-link');
+        sourceLink.innerHTML = '<i class="fa fa-code"></i>';
+        sourceLink.target = '_blank';
+        heading.appendChild(sourceLink);
       }
       // highlight
       Prism.highlightAll();
