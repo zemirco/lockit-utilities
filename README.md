@@ -86,7 +86,7 @@ util.destroy(req, function() {
 
 ### getDatabase (config)
 
-Get type of database and database adapter name from connection string / object.
+Get type of database and database adapter name from connection information.
 
 
 - `config` **Object** - Configuration object
@@ -128,7 +128,7 @@ var db = util.getDatabase(config);
 
 ### qr (config)
 
-Generate image link to QR code.
+Generate link to QR code,  uses <a href="https://developers.google.com/chart/infographics/docs/qr_codes">Google Charts</a>.
 
 
 - `config` **Object** - Configuration object
@@ -161,7 +161,8 @@ var link = util.qr(config);
 
 Prevent users who aren't logged-in from accessing routes.
 Use `loginRoute` for redirection. Function also remembers the requested url
-and user is redirected after successful login.
+and user is redirected after successful login. If `rest` is enabled
+you'll get a `401` response.
 
 
 - `config` **Object** *optional*  - Configuration object
@@ -190,7 +191,8 @@ app.get('/private', util.restrict(config), function(req, res) {
 
 ### verify (token, key, [options])
 
-Verify a two-factor authentication token.
+Verify a two-factor authentication token, uses <a href="http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm">time-based one-time password algorithm (totp)</a>.
+To be used with <a href="https://support.google.com/accounts/answer/1066447?hl=en">Google Authenticator</a>.
 
 
 - `token` **String** - The two-factor token to verify
