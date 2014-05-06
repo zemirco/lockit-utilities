@@ -1,7 +1,6 @@
 
 var fs = require('fs');
 var handlebars = require('handlebars');
-var glob = require('glob');
 
 module.exports = function(grunt) {
 
@@ -94,12 +93,11 @@ module.exports = function(grunt) {
     // read handlebars template from source
     var source = fs.readFileSync('./docs/templates/README.handlebars.md', 'utf8');
     var template = handlebars.compile(source);
-    // get all markdown files from 'includes' folder
-    var files = glob.sync('./docs/includes/*.md');
+    var docsJSON = require('./docs/docs.json');
     // get contents of markdown files
     var contents = [];
-    files.forEach(function(file) {
-      var content = fs.readFileSync(file, 'utf8');
+    docsJSON.functions.forEach(function(fn) {
+      var content = fs.readFileSync('./docs/includes/' + fn.name + '.md', 'utf8');
       contents.push(content);
     });
     // write README.md file
