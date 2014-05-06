@@ -70,11 +70,9 @@ handlebars.registerHelper('list', function(param) {
   // remove <p></p> tags from description
   var desc = param.description.p();
   desc = ' - ' + desc;
-  // use bullet points only for parent params
-  var minus = child ? '- ' : '- ';
   // default values
   var def = param.default ? ' - default `' + param.default + '`' : '';
-  return indentation + minus + name + ' ' + type + optional + desc + def;
+  return indentation + '- ' + name + ' ' + type + optional + desc + def;
 });
 
 handlebars.registerHelper('return', function(returns) {
