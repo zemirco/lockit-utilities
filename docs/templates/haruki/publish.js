@@ -59,7 +59,8 @@ function graft(parentNode, childNodes, parentLongname, parentName) {
                 'virtual': !!element.virtual,
                 'description': element.description || '',
                 'parameters': [ ],
-                'examples': []
+                'examples': [],
+                'lineno': element.meta.lineno
             };
 
             parentNode.functions.push(thisFunction);
