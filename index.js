@@ -6,7 +6,8 @@ var totp = require('notp').totp;
 /**
  * Prevent users who aren't logged-in from accessing routes.
  * Use `loginRoute` for redirection. Function also remembers the requested url
- * and user is redirected after successful login.
+ * and user is redirected after successful login. If `rest` is enabled
+ * you'll get a `401` response.
  *
  * @example <caption>config.js</caption>
    exports.loginRoute = '/login';
@@ -22,28 +23,19 @@ var totp = require('notp').totp;
  */
 exports.restrict = function(config) {
 
-  // use empty object when no config provided
   config = config || {};
-
-  // use default route when none specified
   var route = config.loginRoute || '/login';
 
-  // simple restrict function from express auth example
   return function(req, res, next) {
-
     if (req.session.loggedIn) return next();
-
-    // send only status code when rest and json is active
     if (config.rest) return res.send(401);
-
-    // redirect to login page but save url the user really wanted to visit
     res.redirect(route + '?redirect=' + req.url);
   };
 
 };
 
 /**
- * Get type of database and database adapter name from connection string / object.
+ * Get type of database and database adapter name from connection information.
  *
  * @example <caption>config.js (CouchDB)</caption>
    exports.db = 'http://127.0.0.1:5984/';
@@ -106,7 +98,7 @@ exports.getDatabase = function(config) {
 };
 
 /**
- * Generate image link to QR code.
+ * Generate link to QR code,  uses [Google Charts](https://developers.google.com/chart/infographics/docs/qr_codes).
  *
  * @example
    var config = {
@@ -138,7 +130,8 @@ exports.qr = function(config) {
 };
 
 /**
- * Verify a two-factor authentication token.
+ * Verify a two-factor authentication token, uses [time-based one-time password algorithm (totp)](http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm).
+ * To be used with [Google Authenticator](https://support.google.com/accounts/answer/1066447?hl=en).
  *
  * @example
    var key = 'abcd1234';
