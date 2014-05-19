@@ -1,5 +1,5 @@
 
-### verify (token, key, [options])
+### verify(token, key, [options])
 
 Verify a two-factor authentication token, uses <a href="http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm">time-based one-time password algorithm (totp)</a>.
 To be used with <a href="https://support.google.com/accounts/answer/1066447?hl=en">Google Authenticator</a>.
@@ -17,9 +17,12 @@ To be used with <a href="https://support.google.com/accounts/answer/1066447?hl=e
   - `time` **Number** - Time step of counter in seconds - default `30`
 
 
+
 #### Returns
 
 - **Boolean** - `true` if token is valid
+
+
 
 #### Example
 
@@ -32,4 +35,5 @@ if (valid) {
   // continue here
 }
 ```
+
 
