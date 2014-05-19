@@ -9,10 +9,14 @@ var totp = require('notp').totp;
  * and user is redirected after successful login. If `rest` is enabled
  * you'll get a `401` response.
  *
- * @example <caption>config.js</caption>
+ * @example
+   `config.js`
+
    exports.loginRoute = '/login';
  *
- * @example <caption>app.js</caption>
+ * @example
+   `app.js`
+
    var config = require('./config.js');
    app.get('/private', util.restrict(config), function(req, res) {
      res.send('only a logged in user can see this');
@@ -37,17 +41,23 @@ exports.restrict = function(config) {
 /**
  * Get type of database and database adapter name from connection information.
  *
- * @example <caption>config.js (CouchDB)</caption>
+ * @example
+   `config.js (CouchDB)`
+
    exports.db = 'http://127.0.0.1:5984/';
  *
- * @example <caption>config.js (all other DBs)</caption>
+ * @example
+   `config.js (all other DBs)`
+   
    exports.db = {
      url: 'postgres://127.0.0.1:5432/',
      name: 'users',
      collection: 'my_user_table'
    }
  *
- * @example <caption>app.js</caption>
+ * @example
+   `app.js`
+
    var config = require('./config.js');
    var db = util.getDatabase(config);
    // {
