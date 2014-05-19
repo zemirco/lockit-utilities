@@ -1,5 +1,5 @@
 
-### getDatabase (config)
+### getDatabase(config)
 
 Get type of database and database adapter name from connection information.
 
@@ -9,9 +9,12 @@ Get type of database and database adapter name from connection information.
   - `db` **String, Object** - Database connection string / object
 
 
+
 #### Returns
 
 - **Object** - Object containing database `type` and `adapter`
+
+
 
 #### Example
 
@@ -39,4 +42,5 @@ var db = util.getDatabase(config);
 //   adapter: 'lockit-couchdb-adapter'
 // }
 ```
+
 

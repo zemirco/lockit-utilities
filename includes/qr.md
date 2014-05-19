@@ -1,5 +1,5 @@
 
-### qr (config)
+### qr(config)
 
 Generate link to QR code,  uses <a href="https://developers.google.com/chart/infographics/docs/qr_codes">Google Charts</a>.
 
@@ -13,9 +13,12 @@ Generate link to QR code,  uses <a href="https://developers.google.com/chart/inf
   - `issuer` **String** - Issuer for Google Authenticator - default `'Lockit'`
 
 
+
 #### Returns
 
 - **String** - URL for QR code
+
+
 
 #### Example
 
@@ -28,4 +31,5 @@ var config = {
 var link = util.qr(config);
 // https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=otpauth%3A%2F%2Ftotp%2FLockit%3Amirco.zeiss%40gmail.com%3Fsecret%3DMFRGGZBRGI2DI%3D%3D%3D%26issuer%3DLockit
 ```
+
 

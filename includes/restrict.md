@@ -1,5 +1,5 @@
 
-### restrict ([config])
+### restrict([config])
 
 Prevent users who aren't logged-in from accessing routes.
 Use `loginRoute` for redirection. Function also remembers the requested url
@@ -10,6 +10,7 @@ you'll get a `401` response.
 - `config` **Object** *optional*  - Configuration object
 
   - `loginRoute` **String** - Route that handles the login process - default `'/login'`
+
 
 
 
@@ -29,4 +30,5 @@ app.get('/private', util.restrict(config), function(req, res) {
   res.send('only a logged in user can see this');
 })
 ```
+
 

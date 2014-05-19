@@ -1,4 +1,46 @@
-<!DOCTYPE html><html><head><title>lockit-utils</title><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"><link rel="stylesheet" href="css/prism.css"><link rel="stylesheet" href="css/styles.css"></head><body data-spy="scroll" data-target="nav" data-offset="100"><h1>lockit-utils<a href="https://github.com/zeMirco/lockit-utilities" target="_blank" class="repo-link"><i class="fa fa-github"></i></a></h1><nav><ul class="nav"><li><a href="#restrict-config-" data-lineno="24">restrict</a></li><li><a href="#getdatabase-config-" data-lineno="63">getDatabase</a></li><li><a href="#qr-config-" data-lineno="118">qr</a></li><li><a href="#verify-token-key-options-" data-lineno="153">verify</a></li><li><a href="#destroy-req-done-" data-lineno="173">destroy</a></li></ul></nav><section><h3 id="restrict-config-">restrict ([config])</h3>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>lockit-utils</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="css/prism.css">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body data-spy="scroll" data-target="nav" data-offset="100">
+    <h1>
+      lockit-utils
+      <a href="https://github.com/zeMirco/lockit-utilities" target="_blank" class="repo-link">
+        <i class="fa fa-github"></i>
+      </a>
+    </h1>
+    <nav>
+      <ul class="nav">
+        
+        <li>
+          <a href="#restrict-config-" data-lineno="28">restrict</a>
+        </li>
+        
+        <li>
+          <a href="#getdatabase-config-" data-lineno="73">getDatabase</a>
+        </li>
+        
+        <li>
+          <a href="#qr-config-" data-lineno="128">qr</a>
+        </li>
+        
+        <li>
+          <a href="#verify-token-key-options-" data-lineno="163">verify</a>
+        </li>
+        
+        <li>
+          <a href="#destroy-req-done-" data-lineno="183">destroy</a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+    <section>
+      <h3 id="restrict-config-">restrict([config])</h3>
 <p>Prevent users who aren&#39;t logged-in from accessing routes.
 Use <code>loginRoute</code> for redirection. Function also remembers the requested url
 and user is redirected after successful login. If <code>rest</code> is enabled
@@ -20,7 +62,11 @@ app.get(&#39;/private&#39;, util.restrict(config), function(req, res) {
   res.send(&#39;only a logged in user can see this&#39;);
 })
 </code></pre>
-</section><section><h3 id="getdatabase-config-">getDatabase (config)</h3>
+
+    </section>
+    
+    <section>
+      <h3 id="getdatabase-config-">getDatabase(config)</h3>
 <p>Get type of database and database adapter name from connection information.</p>
 <ul>
 <li><p><code>config</code> <strong>Object</strong> - Configuration object</p>
@@ -52,7 +98,11 @@ var db = util.getDatabase(config);
 //   adapter: &#39;lockit-couchdb-adapter&#39;
 // }
 </code></pre>
-</section><section><h3 id="qr-config-">qr (config)</h3>
+
+    </section>
+    
+    <section>
+      <h3 id="qr-config-">qr(config)</h3>
 <p>Generate link to QR code,  uses <a href="https://developers.google.com/chart/infographics/docs/qr_codes">Google Charts</a>.</p>
 <ul>
 <li><p><code>config</code> <strong>Object</strong> - Configuration object</p>
@@ -78,7 +128,11 @@ var db = util.getDatabase(config);
 var link = util.qr(config);
 // https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl=otpauth%3A%2F%2Ftotp%2FLockit%3Amirco.zeiss%40gmail.com%3Fsecret%3DMFRGGZBRGI2DI%3D%3D%3D%26issuer%3DLockit
 </code></pre>
-</section><section><h3 id="verify-token-key-options-">verify (token, key, [options])</h3>
+
+    </section>
+    
+    <section>
+      <h3 id="verify-token-key-options-">verify(token, key, [options])</h3>
 <p>Verify a two-factor authentication token, uses <a href="http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm">time-based one-time password algorithm (totp)</a>.
 To be used with <a href="https://support.google.com/accounts/answer/1066447?hl=en">Google Authenticator</a>.</p>
 <ul>
@@ -108,7 +162,11 @@ if (valid) {
   // continue here
 }
 </code></pre>
-</section><section><h3 id="destroy-req-done-">destroy (req, done)</h3>
+
+    </section>
+    
+    <section>
+      <h3 id="destroy-req-done-">destroy(req, done)</h3>
 <p>Destroy the current session. Works with cookie sessions and session stores.</p>
 <ul>
 <li><p><code>req</code> <strong>Object</strong> - The default Express request object</p>
@@ -121,32 +179,42 @@ if (valid) {
   // user is now logged out
 });
 </code></pre>
-</section><script src="http://code.jquery.com/jquery-2.1.0.min.js"></script><script src="js/bootstrap.min.js"></script><script src="js/prism.js"></script><script>// add 'language-javascript' to <code> blocks (some already have it)
-var codeBlocks = document.getElementsByTagName('code');
-for (var i = 0; i < codeBlocks.length; i++) {
-  var block = codeBlocks[i];
-  block.classList.add('language-javascript');
-}
-// add hover links to all function headings
-var headings = document.getElementsByTagName('h3');
-for (var i = 0; i < headings.length; i++) {
-  var heading = headings[i];
-  var id = heading.getAttribute('id');
-  // create anchor link for deep linking to function
-  var anchorLink = document.createElement('a');
-  anchorLink.href = '#' + id;
-  anchorLink.classList.add('link');
-  anchorLink.innerHTML = '<i class="fa fa-link"></i>';
-  heading.appendChild(anchorLink);
-  // create link to github repo code with line number
-  var navLink = document.querySelector('a[href="#' + id + '"]');
-  var lineno = navLink.getAttribute('data-lineno');
-  var sourceLink = document.createElement('a');
-  sourceLink.href = 'https://github.com/zeMirco/lockit-utilities/blob/master/index.js#L' + lineno;
-  sourceLink.classList.add('source-link');
-  sourceLink.innerHTML = '<i class="fa fa-code"></i>';
-  sourceLink.target = '_blank';
-  heading.appendChild(sourceLink);
-}
-// highlight
-Prism.highlightAll();</script></body></html>
+
+    </section>
+    
+  </body>
+  <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/prism.js"></script>
+  <script>
+    // add 'language-javascript' to <code> blocks (some already have it)
+    var codeBlocks = document.getElementsByTagName('code');
+    for (var i = 0; i < codeBlocks.length; i++) {
+      var block = codeBlocks[i];
+      block.classList.add('language-javascript');
+    }
+    // add hover links to all function headings
+    var headings = document.getElementsByTagName('h3');
+    for (var i = 0; i < headings.length; i++) {
+      var heading = headings[i];
+      var id = heading.getAttribute('id');
+      // create anchor link for deep linking to function
+      var anchorLink = document.createElement('a');
+      anchorLink.href = '#' + id;
+      anchorLink.classList.add('link');
+      anchorLink.innerHTML = '<i class="fa fa-link"></i>';
+      heading.appendChild(anchorLink);
+      // create link to github repo code with line number
+      var navLink = document.querySelector('a[href="#' + id + '"]');
+      var lineno = navLink.getAttribute('data-lineno');
+      var sourceLink = document.createElement('a');
+      sourceLink.href = 'https://github.com/zeMirco/lockit-utilities/blob/master/index.js#L' + lineno;
+      sourceLink.classList.add('source-link');
+      sourceLink.innerHTML = '<i class="fa fa-code"></i>';
+      sourceLink.target = '_blank';
+      heading.appendChild(sourceLink);
+    }
+    // highlight
+    Prism.highlightAll();
+  </script>
+</html>
