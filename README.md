@@ -1,8 +1,8 @@
 # Lockit utilities
 
-[![Build Status](https://travis-ci.org/zeMirco/lockit-utilities.svg?branch=master)](https://travis-ci.org/zeMirco/lockit-utilities) [![NPM version](https://badge.fury.io/js/lockit-utils.svg)](http://badge.fury.io/js/lockit-utils)
+[![Build Status](https://travis-ci.org/zemirco/lockit-utilities.svg?branch=master)](https://travis-ci.org/zemirco/lockit-utilities) [![NPM version](https://badge.fury.io/js/lockit-utils.svg)](http://badge.fury.io/js/lockit-utils)
 
-Small utilities module for [lockit](https://github.com/zeMirco/lockit).
+Small utilities module for [lockit](https://github.com/zemirco/lockit).
 
 ## Installation
 
