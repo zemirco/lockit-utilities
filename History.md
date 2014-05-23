@@ -1,4 +1,8 @@
 
+##### 0.4.2 / 2014-05-23
+
+- use `req.session.regenerate` instead `req.session.destroy` (fix [#1](https://github.com/zemirco/lockit-utilities/issues/1))
+
 ##### 0.4.1 / 2014-05-23
 
 - fix `restrict` by using `config.login.route` instead `config.loginRoute`
