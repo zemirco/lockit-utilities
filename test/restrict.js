@@ -64,7 +64,9 @@ describe('restrict()', function() {
       url: '/profile'
     };
     var config = {
-      loginRoute: '/test'
+      login: {
+        route: '/test'
+      }
     };
     var fn = utls.restrict(config);
     var res = {
