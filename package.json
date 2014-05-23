@@ -1,6 +1,6 @@
 {
   "name": "lockit-utils",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "utilities for lockit",
   "main": "index.js",
   "scripts": {
