@@ -5,30 +5,32 @@ var totp = require('notp').totp;
 
 /**
  * Prevent users who aren't logged-in from accessing routes.
- * Use `loginRoute` for redirection. Function also remembers the requested url
+ * Use `login.route` for redirection. Function also remembers the requested url
  * and user is redirected after successful login. If `rest` is enabled
  * you'll get a `401` response.
  *
  * @example
    `config.js`
 
-   exports.loginRoute = '/login';
+   exports.login = {
+     route: '/login'
+   };
  *
  * @example
    `app.js`
 
    var config = require('./config.js');
-   app.get('/private', util.restrict(config), function(req, res) {
+   app.get('/private', utils.restrict(config), function(req, res) {
      res.send('only a logged in user can see this');
    })
  *
  * @param {Object} [config] - Configuration object
- * @param {String} [config.loginRoute='/login'] - Route that handles the login process
+ * @param {String} [config.login.route='/login'] - Route that handles the login process
  */
 exports.restrict = function(config) {
 
   config = config || {};
-  var route = config.loginRoute || '/login';
+  var route = (config.login && config.login.route) || '/login';
 
   return function(req, res, next) {
     if (req.session.loggedIn) return next();
@@ -48,7 +50,7 @@ exports.restrict = function(config) {
  *
  * @example
    `config.js (all other DBs)`
-   
+
    exports.db = {
      url: 'postgres://127.0.0.1:5432/',
      name: 'users',
