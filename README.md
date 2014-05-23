@@ -16,7 +16,9 @@ var utls = require('lockit-utils');
 
 ```js
 // redirect target when requesting restricted page
-exports.loginRoute = '/login';
+exports.login = {
+  route: '/login'
+};
 
 // database connection string
 // CouchDB
