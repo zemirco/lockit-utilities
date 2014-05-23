@@ -1,4 +1,10 @@
 
+##### 0.4.1 / 2014-05-23
+
+- fix `restrict` by using `config.login.route` instead `config.loginRoute`
+- drop unnecessary development dependencies
+- update docs
+
 ##### 0.4.0 / 2014-05-05
 
 - improve documentation
