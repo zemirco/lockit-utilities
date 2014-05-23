@@ -17,23 +17,23 @@
       <ul class="nav">
         
         <li>
-          <a href="#restrict-config-" data-lineno="28">restrict</a>
+          <a href="#restrict-config-" data-lineno="30">restrict</a>
         </li>
         
         <li>
-          <a href="#getdatabase-config-" data-lineno="73">getDatabase</a>
+          <a href="#getdatabase-config-" data-lineno="75">getDatabase</a>
         </li>
         
         <li>
-          <a href="#qr-config-" data-lineno="128">qr</a>
+          <a href="#qr-config-" data-lineno="130">qr</a>
         </li>
         
         <li>
-          <a href="#verify-token-key-options-" data-lineno="163">verify</a>
+          <a href="#verify-token-key-options-" data-lineno="165">verify</a>
         </li>
         
         <li>
-          <a href="#destroy-req-done-" data-lineno="183">destroy</a>
+          <a href="#destroy-req-done-" data-lineno="185">destroy</a>
         </li>
         
       </ul>
@@ -42,23 +42,25 @@
     <section>
       <h3 id="restrict-config-">restrict([config])</h3>
 <p>Prevent users who aren&#39;t logged-in from accessing routes.
-Use <code>loginRoute</code> for redirection. Function also remembers the requested url
+Use <code>login.route</code> for redirection. Function also remembers the requested url
 and user is redirected after successful login. If <code>rest</code> is enabled
 you&#39;ll get a <code>401</code> response.</p>
 <ul>
 <li><p><code>config</code> <strong>Object</strong> <em>optional</em>  - Configuration object</p>
 <ul>
-<li><code>loginRoute</code> <strong>String</strong> - Route that handles the login process - default <code>&#39;/login&#39;</code></li>
+<li><code>login</code> <strong>String</strong> - Route that handles the login process - default <code>&#39;/login&#39;</code></li>
 </ul>
 </li>
 </ul>
 <h4 id="example">Example</h4>
 <p><code>config.js</code></p>
-<pre><code class="lang-javascript">exports.loginRoute = &#39;/login&#39;;
+<pre><code class="lang-javascript">exports.login = {
+  route: &#39;/login&#39;
+};
 </code></pre>
 <p><code>app.js</code></p>
 <pre><code class="lang-javascript">var config = require(&#39;./config.js&#39;);
-app.get(&#39;/private&#39;, util.restrict(config), function(req, res) {
+app.get(&#39;/private&#39;, utils.restrict(config), function(req, res) {
   res.send(&#39;only a logged in user can see this&#39;);
 })
 </code></pre>
