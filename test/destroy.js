@@ -24,7 +24,7 @@ describe('destroy()', function() {
         name: 'mirco',
         email: 'mirco.zeiss@gmail.com',
         loggedIn: true,
-        destroy: function() {
+        regenerate: function() {
           done();
         }
       },
