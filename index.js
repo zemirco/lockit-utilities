@@ -184,7 +184,7 @@ exports.verify = function(token, key, options) {
  */
 exports.destroy = function(req, done) {
 
-  if (req.sessionStore) return req.session.destroy(done);
+  if (req.sessionStore) return req.session.regenerate(done);
   req.session = null;
   done();
 
