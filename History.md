@@ -1,4 +1,8 @@
 
+##### 0.5.0 / 2014-05-28
+
+- add `pipe` method to pipe events from child modules to parent module
+
 ##### 0.4.2 / 2014-05-23
 
 - use `req.session.regenerate` instead `req.session.destroy` (fix [#1](https://github.com/zemirco/lockit-utilities/issues/1))
