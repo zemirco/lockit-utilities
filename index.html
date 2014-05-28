@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="css/prism.css">
     <link rel="stylesheet" href="css/styles.css">
   </head>
-  <body data-spy="scroll" data-target="nav" data-offset="100">
-    <h1>
-      lockit-utils
-      <a href="https://github.com/zeMirco/lockit-utilities" target="_blank" class="repo-link">
-        <i class="fa fa-github"></i>
-      </a>
-    </h1>
+  <body data-spy="scroll" data-target="nav" data-offset="80">
+    <header>
+      <h1>
+        lockit-utils
+        <a href="https://github.com/zeMirco/lockit-utilities" target="_blank" class="repo-link">
+          <i class="fa fa-github"></i>
+        </a>
+      </h1>
+    </header>
     <nav>
       <ul class="nav">
         
@@ -36,11 +38,16 @@
           <a href="#destroy-req-done-" data-lineno="185">destroy</a>
         </li>
         
+        <li>
+          <a href="#pipe-source-target-" data-lineno="224">pipe</a>
+        </li>
+        
       </ul>
     </nav>
-    
-    <section>
-      <h3 id="restrict-config-">restrict([config])</h3>
+    <main>
+      
+      <section>
+        <h3 id="restrict-config-">restrict([config])</h3>
 <p>Prevent users who aren&#39;t logged-in from accessing routes.
 Use <code>login.route</code> for redirection. Function also remembers the requested url
 and user is redirected after successful login. If <code>rest</code> is enabled
@@ -65,10 +72,10 @@ app.get(&#39;/private&#39;, utils.restrict(config), function(req, res) {
 })
 </code></pre>
 
-    </section>
-    
-    <section>
-      <h3 id="getdatabase-config-">getDatabase(config)</h3>
+      </section>
+      
+      <section>
+        <h3 id="getdatabase-config-">getDatabase(config)</h3>
 <p>Get type of database and database adapter name from connection information.</p>
 <ul>
 <li><p><code>config</code> <strong>Object</strong> - Configuration object</p>
@@ -101,10 +108,10 @@ var db = util.getDatabase(config);
 // }
 </code></pre>
 
-    </section>
-    
-    <section>
-      <h3 id="qr-config-">qr(config)</h3>
+      </section>
+      
+      <section>
+        <h3 id="qr-config-">qr(config)</h3>
 <p>Generate link to QR code,  uses <a href="https://developers.google.com/chart/infographics/docs/qr_codes">Google Charts</a>.</p>
 <ul>
 <li><p><code>config</code> <strong>Object</strong> - Configuration object</p>
@@ -131,10 +138,10 @@ var link = util.qr(config);
 // https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl=otpauth%3A%2F%2Ftotp%2FLockit%3Amirco.zeiss%40gmail.com%3Fsecret%3DMFRGGZBRGI2DI%3D%3D%3D%26issuer%3DLockit
 </code></pre>
 
-    </section>
-    
-    <section>
-      <h3 id="verify-token-key-options-">verify(token, key, [options])</h3>
+      </section>
+      
+      <section>
+        <h3 id="verify-token-key-options-">verify(token, key, [options])</h3>
 <p>Verify a two-factor authentication token, uses <a href="http://en.wikipedia.org/wiki/Time-based_One-time_Password_Algorithm">time-based one-time password algorithm (totp)</a>.
 To be used with <a href="https://support.google.com/accounts/answer/1066447?hl=en">Google Authenticator</a>.</p>
 <ul>
@@ -165,10 +172,10 @@ if (valid) {
 }
 </code></pre>
 
-    </section>
-    
-    <section>
-      <h3 id="destroy-req-done-">destroy(req, done)</h3>
+      </section>
+      
+      <section>
+        <h3 id="destroy-req-done-">destroy(req, done)</h3>
 <p>Destroy the current session. Works with cookie sessions and session stores.</p>
 <ul>
 <li><p><code>req</code> <strong>Object</strong> - The default Express request object</p>
@@ -182,8 +189,44 @@ if (valid) {
 });
 </code></pre>
 
-    </section>
-    
+      </section>
+      
+      <section>
+        <h3 id="pipe-source-target-">pipe(source, target)</h3>
+<p>Pipe events from <code>source</code> to <code>target</code>. <code>source</code> can be a single event
+emitter or an Array of event emitters.</p>
+<ul>
+<li><p><code>source</code> <strong>Object, Array</strong> - Single event emitter or Array of event emitters</p>
+</li>
+<li><p><code>target</code> <strong>Object</strong> - Single event emitter</p>
+</li>
+</ul>
+<h4 id="example">Example</h4>
+<pre><code class="lang-javascript">var util = require(&#39;util&#39;);
+var events = require(&#39;events&#39;);
+var utils = require(&#39;lockit-utils&#39;);
+
+var Child = function() {};
+util.inherits(Child, events.EventEmitter);
+
+var Mother = function() {};
+util.inherits(Mother, events.EventEmitter);
+
+var child = new Child();
+var mother = new Mother();
+
+utils.pipe(child, mother);
+
+mother.on(&#39;action&#39;, function(action) {
+  console.log(&#39;look the child is &#39; + action);
+});
+
+child.emit(&#39;action&#39;, &#39;smiling&#39;);
+</code></pre>
+
+      </section>
+      
+    </main>
   </body>
   <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
