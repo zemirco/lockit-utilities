@@ -27,7 +27,7 @@
     "should": "^3.3.1"
   },
   "dependencies": {
-    "thirty-two": "0.0.1",
+    "thirty-two": "0.0.2",
     "notp": "^2.0.2"
   }
 }
