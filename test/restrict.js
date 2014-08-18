@@ -43,7 +43,7 @@ describe('restrict()', function() {
         name: null,
         email: null
       },
-      url: '/profile'
+      originalUrl: '/profile'
     };
     var fn = utls.restrict();
     var res = {
@@ -61,7 +61,7 @@ describe('restrict()', function() {
         name: null,
         email: null
       },
-      url: '/profile'
+      originalUrl: '/profile'
     };
     var config = {
       login: {
