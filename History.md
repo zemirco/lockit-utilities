@@ -1,4 +1,9 @@
 
+##### 0.5.1 / 2014-08-18
+
+- use `req.originalUrl` instead `req.url` for redirect
+- update dependencies
+
 ##### 0.5.0 / 2014-05-28
 
 - add `pipe` method to pipe events from child modules to parent module
