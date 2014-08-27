@@ -167,7 +167,7 @@ exports.verify = function(token, key, options) {
   options = options || {};
 
   var verified = totp.verify(token, key, options);
-  return (verified && verified.delta === 0) ? true : false;
+  return (verified && verified.delta === 0);
 
 };
 
