@@ -1,4 +1,8 @@
 
+##### 0.5.3 / 2015-07-03
+
+- fix test command in `package.json`
+
 ##### 0.5.2 / 2015-07-03
 
 - use eslint
