@@ -1,6 +1,7 @@
+'use strict';
 
 var totp = require('notp').totp;
-var should = require('should');
+var assert = require('assert');
 var utls = require('../index.js');
 
 describe('verify', function() {
@@ -9,14 +10,14 @@ describe('verify', function() {
     var key = 'abcd1234';
     var token = totp.gen(key, {});
     var valid = utls.verify(token, key);
-    valid.should.be.ok;
+    assert(valid);
   });
 
   it('should return "false" if token is invalid', function() {
     var key = 'abcd1234';
     var token = '123456';
     var valid = utls.verify(token, key);
-    valid.should.not.be.ok;
+    assert(!valid);
   });
 
   it('should return "false" if token is valid but old', function(done) {
@@ -27,7 +28,7 @@ describe('verify', function() {
     var token = totp.gen(key, options);
     setTimeout(function() {
       var valid = utls.verify(token, key, options);
-      valid.should.not.be.ok;
+      assert(!valid);
       done();
     }, 100);
   });

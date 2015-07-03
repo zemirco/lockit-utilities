@@ -1,5 +1,6 @@
+'use strict';
 
-var should = require('should');
+var assert = require('assert');
 var utls = require('../index.js');
 
 describe('restrict()', function() {
@@ -13,7 +14,7 @@ describe('restrict()', function() {
     };
     var fn = utls.restrict();
     var res = {
-      redirect: function(route) {
+      redirect: function() {
         // simply make sure res.redirect() is called
         done();
       }
@@ -48,7 +49,7 @@ describe('restrict()', function() {
     var fn = utls.restrict();
     var res = {
       redirect: function(route) {
-        route.should.equal('/login?redirect=/profile');
+        assert.equal(route, '/login?redirect=/profile');
         done();
       }
     };
@@ -71,7 +72,7 @@ describe('restrict()', function() {
     var fn = utls.restrict(config);
     var res = {
       redirect: function(route) {
-        route.should.equal('/test?redirect=/profile');
+        assert.equal(route, '/test?redirect=/profile');
         done();
       }
     };
@@ -91,7 +92,7 @@ describe('restrict()', function() {
     var fn = utls.restrict(config);
     var res = {
       send: function(status) {
-        status.should.equal(401);
+        assert.equal(status, 401);
         done();
       }
     };

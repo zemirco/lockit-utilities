@@ -1,3 +1,4 @@
+'use strict';
 
 var util = require('util');
 var events = require('events');
@@ -37,7 +38,7 @@ describe('pipe', function() {
     var called = 0;
     mother.on('smile', function() {
       called++;
-      if (called === 2) done();
+      if (called === 2) {done(); }
     });
     child.emit('smile');
     teen.emit('smile');

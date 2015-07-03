@@ -1,3 +1,4 @@
+'use strict';
 
 var should = require('should');
 var utls = require('../index.js');
@@ -28,7 +29,7 @@ describe('destroy()', function() {
           done();
         }
       },
-      sessionStore: {},
+      sessionStore: {}
     };
     utls.destroy(req);
   });

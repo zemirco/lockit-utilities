@@ -13,21 +13,19 @@
   "author": {
     "name": "Mirco Zeiss",
     "email": "mirco.zeiss@gmail.com",
-    "twitter": "zeMirco"
+    "twitter": "zemirco"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zeMirco/lockit-utilities"
+    "url": "https://github.com/zemirco/lockit-utilities"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-mocha-test": "^0.11.0",
-    "should": "^4.0.4"
+    "mocha": "^2.2.5",
+    "should": "^7.0.1"
   },
   "dependencies": {
-    "thirty-two": "0.0.2",
-    "notp": "^2.0.2"
+    "notp": "^2.0.2",
+    "thirty-two": "0.0.2"
   }
 }

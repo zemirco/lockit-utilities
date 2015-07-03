@@ -1,3 +1,4 @@
+'use strict';
 
 var should = require('should');
 var utls = require('../index.js');
@@ -41,7 +42,7 @@ describe('qr', function() {
   it('should use base32 encoding for the key', function() {
     var config = {
       key: 'abcd1244',
-      email: 'mirco.zeiss@gmail.com',
+      email: 'mirco.zeiss@gmail.com'
     };
     var encoded = encodeURIComponent('MFRGGZBRGI2DI===');
     var link = utls.qr(config);

@@ -1,3 +1,4 @@
+'use strict';
 
 var url = require('url');
 var base32 = require('thirty-two');
@@ -33,8 +34,8 @@ exports.restrict = function(config) {
   var route = (config.login && config.login.route) || '/login';
 
   return function(req, res, next) {
-    if (req.session.loggedIn) return next();
-    if (config.rest) return res.send(401);
+    if (req.session.loggedIn) {return next(); }
+    if (config.rest) {return res.send(401); }
     res.redirect(route + '?redirect=' + req.originalUrl);
   };
 
@@ -184,11 +185,23 @@ exports.verify = function(token, key, options) {
  */
 exports.destroy = function(req, done) {
 
-  if (req.sessionStore) return req.session.regenerate(done);
+  if (req.sessionStore) {return req.session.regenerate(done); }
   req.session = null;
   done();
 
 };
+
+
+
+// private helper function
+function pipe(source, target) {
+  var emit = source.emit;
+  source.emit = function () {
+    emit.apply(source, arguments);
+    target.emit.apply(target, arguments);
+    return source;
+  };
+}
 
 
 
@@ -225,19 +238,10 @@ exports.pipe = function(source, target) {
 
   var isArray = Array.isArray(source);
 
-  if (!isArray) return pipe(source, target);
+  if (!isArray) {return pipe(source, target); }
 
   source.forEach(function(event) {
     pipe(event, target);
   });
-
-  function pipe(source, target) {
-    var emit = source.emit;
-    source.emit = function () {
-      emit.apply(source, arguments);
-      target.emit.apply(target, arguments);
-      return source;
-    };
-  }
 
 };

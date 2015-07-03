@@ -1,4 +1,10 @@
 
+##### 0.5.2 / 2015-07-03
+
+- use eslint
+- update dependencies
+- use make instead grunt
+
 ##### 0.5.1 / 2014-08-18
 
 - use `req.originalUrl` instead `req.url` for redirect

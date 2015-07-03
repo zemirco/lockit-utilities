@@ -285,7 +285,7 @@ child.emit('action', 'smiling');
 
 ## Test
 
-`grunt test`
+`make test`
 
 ## License
 
