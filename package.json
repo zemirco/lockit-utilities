@@ -4,7 +4,7 @@
   "description": "utilities for lockit",
   "main": "index.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "make test"
   },
   "keywords": [
     "lockit",
